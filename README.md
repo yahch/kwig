@@ -1,8 +1,8 @@
 # KWIG
 
-------
-
 KIWG 是一个基于 summernote 的 WinForm 编辑器控件。
+
+[](/yahch/kwig/blob/master/screenshots/screenshot-1.png?raw=true)
 
 **使用方法：**
 
