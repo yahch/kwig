@@ -1,50 +1,48 @@
 # KWIG
 
-KIWG 是一个基于 summernote 的 WinForm 编辑器控件。
+KIWG is a WYSIWYG editor for WinForm based on summernote.
 
 ![](https://raw.githubusercontent.com/yahch/kwig/master/screenshots/screenshot-1.png)
 
-**使用方法：**
+**Instructions:**
 
-1.添加 kwig.dll 的引用
+1. Add a reference to kwig.dll
 
-2.界面添加 KEditor 的编辑器控件
+2. Add KEditor control to your form
 
-3.运行
+3. Buid & Run
 
-**事件:**
-
-```
-// 打开文件按钮事件
-void OnOpenButtonClicked();
-// 保存按钮事件
-void OnSaveButtonClicked();
-// 插入图片按钮事件
-void OnInsertImageClicked();
-// 编辑器加载成功事件
-void OnEditorLoadComplete();
-// 编辑器错误事件
-void OnEditorErrorOccured(Exception ex);
-```
-
-**属性:**
+**Events:**
 
 ```
-// 编辑器版本，同 summernote 版本号
+// open file button event
+Void OnOpenButtonClicked();
+// save button event
+Void OnSaveButtonClicked();
+// Insert picture button event
+Void OnInsertImageClicked();
+// Editor loads success event
+Void OnEditorLoadComplete();
+// editor error event
+Void OnEditorErrorOccured(Exception ex);
+```
+
+**Attributes:**
+
+```
+// editor version, same as summernote version number
 KEditor.Version
-// 设置或获取编辑器 Html 内容
+// Set or get the editor Html content
 KEditor.Html
 ```
 
-**方法:**
+**Methods:**
 
 ```
-// 编辑器清空重置
+// editor clear reset
 KEditor.Reset();
-// 插入 html 代码
+// insert html code
 KEditor.InsertNode(string html)
-// 插入文本
+// insert text
 KEditor.InsertText(string text)
 ```
-
-
