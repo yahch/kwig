@@ -1,5 +1,7 @@
 # KWIG
 
+!!! NOT IN MAINTENANCED.but accept pr.
+
 KIWG is a WYSIWYG editor for WinForm based on summernote.
 
 ![](https://raw.githubusercontent.com/yahch/kwig/master/screenshots/screenshot-1.png)
