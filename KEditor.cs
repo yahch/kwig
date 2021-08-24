@@ -95,7 +95,8 @@ namespace KSharpEditor
         {
             try
             {
-                Stream sm = Assembly.GetExecutingAssembly().GetManifestResourceStream("KSharpEditor.Resources.editor.html");
+                string resourcename = Assembly.GetExecutingAssembly().GetManifestResourceNames().FirstOrDefault(x => x.Contains("editor.html"));
+                Stream sm = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourcename);
                 byte[] bs = new byte[sm.Length];
                 sm.Read(bs, 0, (int)sm.Length);
                 sm.Close();
