@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KSharpEditor.Args;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,12 @@ namespace KSharpEditor
     public class KEditor : System.Windows.Forms.UserControl
     {
         private KBrowser kBrowserEditor;
+
+        public event EventHandler<EditorArgs> OpenButtonClick;
+        public event EventHandler<EditorArgs> SaveButtonClick;
+        public event EventHandler<EditorArgs> InsertImageClick;
+        public event EventHandler<EditorArgs> EditorLoadComplete;
+        public event EventHandler<ErrorArgs> EditorError;
 
         private void InitializeComponent()
         {
@@ -113,29 +120,57 @@ namespace KSharpEditor
         private void OnError(Exception ex)
         {
             if (KEditorEventListener != null) KEditorEventListener.OnEditorErrorOccured(ex);
+            if (EditorError != null)
+            {
+                EditorError(this, new ErrorArgs(ex));
+            }
         }
 
 
         public void OnSaveButtonClicked()
         {
             if (KEditorEventListener != null) KEditorEventListener.OnSaveButtonClicked();
+            if (SaveButtonClick != null)
+            {
+                SaveButtonClick(this, GetEditArgs());
+            }
         }
 
 
         public void OnOpenFileButtonClicked()
         {
             if (KEditorEventListener != null) KEditorEventListener.OnOpenButtonClicked();
+            if (OpenButtonClick != null)
+            {
+                OpenButtonClick(this, GetEditArgs());
+            }
         }
 
+        private EditorArgs GetEditArgs()
+        {
+            return new EditorArgs()
+            {
+                Html = this.Html,
+                Version = this.Version
+            };
+        }
 
         public void OnInsertImageButtonClicked()
         {
             if (KEditorEventListener != null) KEditorEventListener.OnInsertImageClicked();
+            if (InsertImageClick != null)
+            {
+                InsertImageClick(this, GetEditArgs());
+            }
         }
 
         public void OnEditorLoadComplete()
         {
             if (KEditorEventListener != null) KEditorEventListener.OnEditorLoadComplete();
+            if (EditorLoadComplete != null)
+            {
+                EditorLoadComplete(this, GetEditArgs());
+            }
         }
 
         public void Reset()
