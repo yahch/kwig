@@ -11133,7 +11133,7 @@
              // create button
              var button = ui.button({
                  contents: '<i class="fa fa-save"/>',
-                 tooltip: '保存',
+                 tooltip: getSaveFileTooltip(),
                  click: function () {
                      window.external.OnSaveButtonClicked();
                  }
@@ -11148,7 +11148,7 @@
              // create button
              var button = ui.button({
                  contents: '<i class="fa fa-folder-open"/>',
-                 tooltip: '打开',
+                 tooltip: getOpenFileTooltip(),
                  click: function () {
                      window.external.OnOpenFileButtonClicked();
                  }
@@ -11163,14 +11163,34 @@
              // create button
              var button = ui.button({
                  contents: '<i class="fa fa-file-picture-o"/>',
-                 tooltip: '插入图片',
+                 tooltip: getImageTooltip(),
                  click: function () {
                      window.external.OnInsertImageButtonClicked();
                  }
              });
 
              return button.render();   // return button as jquery object
-         }
+        }
+        function getSaveFileTooltip() {
+            if (_lang == '') {
+                return '保存';
+            }
+            return 'Save';
+        }
+
+        function getOpenFileTooltip() {
+            if (_lang == '') {
+                return '打开';
+            }
+            return 'Open';
+        }
+
+        function getImageTooltip() {
+            if (_lang=='') {
+                return '插入图片';
+            }
+            return 'Insert Image';
+        }
 
          function getHtml() {
              var markupStr = $('#summernote').summernote('code');
@@ -11197,12 +11217,22 @@
 
          function insertText(text) {
              $('#summernote').summernote('insertText', text);
-         }
+        }
 
-         $(document).ready(function () {
+        function insertImage(url, fileName) {
+            $('#summernote').summernote('insertImage', url, filename);
+        }
+
+        var _lang = "zh-CN"
+        function setLang(lang) {
+            _lang = lang;
+        }
+
+        $(document).ready(function () {
+            window.external.OnEditorLoadStart();
              $('#summernote').summernote({
                  focus:true,
-                 lang: 'zh-CN',
+                 lang: _lang,
                  toolbar: [
                      ['file', ['openFile', 'save']],
                      ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -11216,6 +11246,10 @@
                  callbacks: {
                      onInit: function () { $("#summernote").summernote("fullscreen.toggle"); }
                  },
+                 styleTags: [
+                     'p',
+                     'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+                 ],
                  buttons: {
                      save: saveButton,
                      openFile: openFileButton,

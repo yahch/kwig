@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KSharpEditor
 {
+    [Obsolete("Please use events instead.", false)]
     public interface IKEditorEventListener
     {
         void OnOpenButtonClicked();
