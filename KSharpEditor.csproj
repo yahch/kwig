@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Args\EditorArgs.cs" />
+    <Compile Include="Args\ErrorArgs.cs" />
     <Compile Include="IKEditorEventListener.cs" />
     <Compile Include="KBrowser.cs">
       <SubType>Component</SubType>
